@@ -25,9 +25,9 @@ let ngmWindow;
 let ngmState = {
     players: 4,
     Guesses: 4,
-    playerGuesses: []
+    playerGuesses: [],
+    startingGuesses: []
 };
-
 let ngmUndoStack = [];
 let lastSentGuesses = "";
 
@@ -126,12 +126,8 @@ function setup() {
     buildSettingsUI();
 
     $(document).on("input", "#ngmPlayerCountInput", function () {
-        const count = Math.max(1, parseInt($(this).val()) || 1);
-        ngmState.players = count;
-        ngmState.playerGuesses = Array.from({ length: count }, () => ngmState.Guesses);
-        buildGuessesInputs();
-        buildUI();
-    });
+    buildGuessesInputs();
+});
 
     buildUI();
     switchTab("ngmTracker");
@@ -169,7 +165,8 @@ function injectMenuButton() {
 function loadSettings() {
     ngmState.players = 4;
     ngmState.Guesses = 4;
-    ngmState.playerGuesses = [5, 5, 4, 3];
+    ngmState.startingGuesses = [5, 5, 4, 3];
+    ngmState.playerGuesses = [...ngmState.startingGuesses];
 }
 
 function buildSettingsUI() {
@@ -206,14 +203,15 @@ function buildSettingsUI() {
 
 function saveSettings() {
     const playerCount = parseInt($("#ngmPlayerCountInput").val()) || 4;
-    const Guesses = [];
+    const guesses = [];
 
     $(".ngmGuessInput").each(function () {
-        Guesses.push(parseInt($(this).val()) || ngmState.Guesses);
+        guesses.push(parseInt($(this).val()) || ngmState.Guesses);
     });
 
     ngmState.players = playerCount;
-    ngmState.playerGuesses = Guesses.slice(0, playerCount);
+    ngmState.startingGuesses = guesses.slice(0, playerCount);
+    ngmState.playerGuesses = [...ngmState.startingGuesses];
 
     buildSettingsUI();
     buildUI();
@@ -224,7 +222,15 @@ function buildGuessesInputs() {
     const $c = $("#ngmGuessesContainer");
     $c.empty();
 
-    for (let i = 0; i < ngmState.players; i++) {
+    const count = Math.max(
+        1,
+        parseInt($("#ngmPlayerCountInput").val()) || ngmState.players
+    );
+
+    for (let i = 0; i < count; i++) {
+        const value =
+            ngmState.startingGuesses[i] ??
+            ngmState.Guesses;
 
         $c.append(
             $("<div>", {
@@ -238,7 +244,7 @@ function buildGuessesInputs() {
                 class: "ngmGuessInput",
                 type: "number",
                 min: 0,
-                value: ngmState.playerGuesses[i],
+                value,
                 style: "width:100%;padding:4px;color:black;text-align:center;"
             }))
         );
@@ -296,13 +302,13 @@ function updatePlayerStateUI() {
 /* ---------------- RESET ---------------- */
 
 function resetGame() {
-    for (let i = 0; i < ngmState.players; i++) {
-        ngmState.playerGuesses[i] = ngmState.Guesses;
-    }
+    ngmState.playerGuesses = [...ngmState.startingGuesses];
     ngmUndoStack = [];
+
     $(".ngmGuesses").each(function (i) {
         $(this).text(ngmState.playerGuesses[i]);
     });
+
     updatePlayerStateUI();
     maybeSendGuesses(true);
 }
