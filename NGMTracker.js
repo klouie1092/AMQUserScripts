@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         AMQ NGM Helper
+// @name         AMQ NGM Tracker
 // @namespace    https://github.com/klouie1092
 // @version      0.1.0
 // @description  Adds a window to track guesses in NGM and NGMC
@@ -37,7 +37,7 @@ function setup() {
     loadSettings();
     ngmWindow = new AMQWindow({
         id: "ngmWindow",
-        title: "NGM Helper",
+        title: "NGM Tracker",
         width: 650,
         height: 275,
         minWidth: 0,
@@ -155,7 +155,7 @@ function injectMenuButton() {
         $("<li>", {
             id: "ngmMenuEntry",
             class: "clickAble",
-            text: "NGM Helper"
+            text: "NGM Tracker"
         })
             .on("click", () => ngmWindow.open())
             .insertBefore(target);
@@ -169,7 +169,7 @@ function injectMenuButton() {
 function loadSettings() {
     ngmState.players = 4;
     ngmState.Guesses = 4;
-    ngmState.playerGuesses = [4, 4, 4, 4];
+    ngmState.playerGuesses = [5, 5, 4, 3];
 }
 
 function buildSettingsUI() {
