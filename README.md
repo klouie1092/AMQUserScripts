@@ -22,5 +22,5 @@ Open the window from the cog at the bottom right
 
 Adds support for eru mode, requires there to be an even number of players
 
-- "/eru <teamLives>" - Starts an eru game with the given number of lives per team
+- "/eru \<lives\>" - Starts an eru game with the given number of lives per team
 - "/eru stop" - Stops the current eru game
