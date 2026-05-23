@@ -12,7 +12,7 @@ Requires Tampermonkey browser extension
 
 ## Script descriptions / usage information
 
-### [NGM Tracker (NGMTracker.js)](https://github.com/klouie1092/AMQUserScripts/blob/main/NGMTracker.js)
+### [NGM Tracker (NGMTracker.js)](https://github.com/klouie1092/AMQUserScripts/blob/main/.GameModes/NGMTracker.js)
 
 Adds a window which you can use to track lives when playing NGM or NGMC. Settings tab allows you to select number of players on your team, as well as how many guesses each player gets
 
