@@ -17,3 +17,10 @@ Requires Tampermonkey browser extension
 Adds a window which you can use to track lives when playing NGM or NGMC. Settings tab allows you to select number of players on your team, as well as how many guesses each player gets
 
 Open the window from the cog at the bottom right
+
+### [Eru Tracker (EruTracker.js)](https://github.com/klouie1092/AMQUserScripts/blob/main/GameModes/eruTracker.js)
+
+Adds support for eru mode, requires there to be an even number of players
+
+- "/eru <teamLives>" - Starts an eru game with the given number of lives per team
+- "/eru stop" - Stops the current eru game
