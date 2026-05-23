@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name         Eru Mode Tracker
-// @namespace    http://tampermonkey.net/
+// @namespace    https://github.com/klouie1092
 // @version      0.1.0
 // @description  Creates support for eru mode in AMQ
 // @author       Shinks
-// @match        https://animemusicquiz.com/
+// @match        https://*.animemusicquiz.com/*
+// @grant        none
 // @require      https://github.com/joske2865/AMQ-Scripts/raw/master/common/amqScriptInfo.js
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=animemusicquiz.com
-// @grant        none
 // ==/UserScript==
 
 //Usage:
