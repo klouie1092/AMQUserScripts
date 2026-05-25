@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Eru Mode Tracker
 // @namespace    https://github.com/klouie1092
-// @version      0.1.0
+// @version      0.1.1
 // @description  Creates support for eru mode in AMQ
 // @author       Shinks
 // @match        https://*.animemusicquiz.com/*
@@ -37,7 +37,10 @@ const loadInterval = setInterval(() => {
 function setup() {
     new Listener("game chat update", (data) => {
         for (const message of data.messages) {
-            console.log(message)
+            if (message.sender != selfName)
+            {
+                continue;
+            }
             if (message.message.startsWith("/eru")) {
                 parseCommand(message.message)
             }
